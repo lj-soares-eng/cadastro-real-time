@@ -1,4 +1,20 @@
 services:
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cadastro-frontend
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_started
+    environment:
+      VITE_API_URL: http://localhost:3000
+      VITE_DEV_PROXY_API: http://api:3000
+    ports:
+      - "5173:5173"
+
   postgres:
     image: postgres:17-alpine
     container_name: cadastro-postgres
@@ -35,7 +51,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    container_name: cadastro_api
+    container_name: cadastro-api
     restart: unless-stopped
     depends_on:
       postgres:
@@ -54,4 +70,3 @@ services:
 volumes:
     cadastro_postgres_data:
     cadastro_redis_data:
-
