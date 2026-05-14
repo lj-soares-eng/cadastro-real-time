@@ -31,30 +31,25 @@ type AuthedRequest = Request & {
 };
 
 /* Controller de usuarios */
-  /* Controller de usuarios */
-  @Controller('users')
+@Controller('users')
 export class UsersController {
   /* Constructor para injetar o servico de usuarios */
   constructor(private readonly usersService: UsersService) {}
-  /* Criacao de usuario */
 
   /* Criacao de usuario */
   @Post()
-  /* Criacao de usuario */
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
   /* Busca todos os usuarios */
   @Get()
-  /* Busca todos os usuarios */
   findAll() {
     return this.usersService.findAll();
   }
 
   /* Busca usuario por id */
   @Get(':id')
-  /* Busca usuario por id */
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
@@ -62,7 +57,6 @@ export class UsersController {
   /* Atualizacao de usuario */
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
-  /* Atualizacao de usuario */
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,
@@ -80,7 +74,6 @@ export class UsersController {
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
-  /* Delecao de usuario */
   async remove(
     @Param('id', ParseIntPipe) id: number,
     /* Request autenticado */
