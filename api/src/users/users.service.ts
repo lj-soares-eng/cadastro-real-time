@@ -97,7 +97,7 @@ export class UsersService {
         e.code === 'P2002'
       ) {
         /* Retorna erro de duplicacao de email */
-        throw new ConflictException('Este e-mail já está cadastrado');
+        throw new ConflictException('E-mail já está cadastrado');
       }
       /* Verifica se o erro e de usuario nao encontrado */
       if (
